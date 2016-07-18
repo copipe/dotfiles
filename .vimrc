@@ -78,6 +78,16 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 60
 \   },
 \}
+" c++でquickrunする場合の設定(コンパイラを"/usr/bin/clang++"に指定)
+" 上と一つにまとめようとしたらうまくいかなかった
+let g:quickrun_config = {
+\   "cpp" : {
+\       "outputter/buffer/split" : ":botright",
+\       "outputter/buffer/close_on_empty" : 1,
+\       "hook/time/enable" : 1,
+\       "command":"/usr/bin/clang++"
+\   },
+\}
 
 " quickrunを<C-c> で実行を強制終了させる
 " quickrun.vim が実行していない場合には <C-c> を呼び出す
