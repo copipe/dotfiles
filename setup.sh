@@ -30,3 +30,5 @@ fi
 git clone https://github.com/tomasr/molokai ~/.vim/molokai
 mv ~/.vim/molokai/colors/molokai.vim ~/.vim/colors
 rm -rf ~/.vim/molokai
+
+curl https://github.com/aereal/dotfiles/blob/master/colors/Japanesque/Japanesque.itermcolors > ~/Desktop/Japanesque.itermcolors
