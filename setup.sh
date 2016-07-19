@@ -1,3 +1,9 @@
+if [ -f ~/.bash_profile ]; then
+    echo "~/.bash_profile exist --> mv ~/.bash_profile ~/.bash_profile.orig";
+    mv ~/.bash_profile ~/.bash_profile.orig
+fi
+ln -s ~/dotfiles/.bash_profile ~/.bash_profile
+
 if [ -f ~/.vimrc ]; then
     echo "~/.vimrc exist --> mv ~/.vimrc ~/.vimrc.orig";
     mv ~/.vimrc ~/.vimrc.orig
