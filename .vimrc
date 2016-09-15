@@ -10,14 +10,52 @@ set shiftwidth=4  "自動インデントでずれる幅
 set softtabstop=4  "連続した空白に対して<tab>や<del>でガーソルが動く幅
 set backspace=indent,eol,start "バックスペースの有効化
 
-:command NT NERDTree
-:command QR QuickRun
+let mapleader=","
+noremap <Leader>w :w<CR>
+noremap <Leader>q :wq<CR>
+
+" プラグイン系
+noremap <Leader>n :NERDTree<CR>
+noremap <Leader>qr :QuickRun<CR>
+
+" バッファ移動系
+ nnoremap <silent> [b :bprevious<CR>
+ nnoremap <silent> ]b :bnext<CR>
+ nnoremap <silent> [B :bfirst<CR>
+ nnoremap <silent> [B :blast<CR>
+ nnoremap <Leader>b :bdelete<CR>
+
+" スプリットウインドウ系
+
+nnoremap <silent> ss :split<CR>
+nnoremap <silent> sv :vsplit<CR>
+nnoremap <silent> sh <C-w>h<CR>
+nnoremap <silent> sj <C-w>j<CR>
+nnoremap <silent> sk <C-w>k<CR>
+nnoremap <silent> sl <C-w>l<CR>
+
+
+command NT NERDTree
+""command QR QuickRun
+
+command! -nargs=? QR call s:QR(<f-args>)
+function! s:QR(...)
+  if a:0 >= 1
+    
+    echo "arg : ".a:1
+  else
+	:QuickRun
+  end
+endfunction
+
+
 
 inoremap ( ()<LEFT>
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ' ''<LEFT>
 inoremap " ""<LEFT>
+inoremap $ $$<LEFT>
 
 
 " ファイルタイプ関連を無効化する
