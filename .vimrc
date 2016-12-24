@@ -1,7 +1,9 @@
 syntax on  "色分け
 colorscheme molokai "色指定
 set number  "行番号の表示 :set nonumber で非表示
+set title
 set showmatch  "対応する括弧を強調表示
+set cursorcolumn "カーソル列の背景を変更"
 set cursorline  "カーソル行の背景を変更
 set whichwrap=b,s,h,l,<,>,[,]  "行頭行末の左右移動で行をまたぐ
 set tabstop=4  "画面上でタブ文字が占める幅
@@ -9,45 +11,6 @@ set expandtab  "タブ入力を複数の空白入力に置き換える
 set shiftwidth=4  "自動インデントでずれる幅
 set softtabstop=4  "連続した空白に対して<tab>や<del>でガーソルが動く幅
 set backspace=indent,eol,start "バックスペースの有効化
-
-let mapleader=","
-noremap <Leader>w :w<CR>
-noremap <Leader>q :wq<CR>
-
-" プラグイン系
-noremap <Leader>n :NERDTree<CR>
-noremap <Leader>qr :QuickRun<CR>
-
-" バッファ移動系
- nnoremap <silent> [b :bprevious<CR>
- nnoremap <silent> ]b :bnext<CR>
- nnoremap <silent> [B :bfirst<CR>
- nnoremap <silent> [B :blast<CR>
- nnoremap <Leader>b :bdelete<CR>
-
-" スプリットウインドウ系
-
-nnoremap <silent> ss :split<CR>
-nnoremap <silent> sv :vsplit<CR>
-nnoremap <silent> sh <C-w>h<CR>
-nnoremap <silent> sj <C-w>j<CR>
-nnoremap <silent> sk <C-w>k<CR>
-nnoremap <silent> sl <C-w>l<CR>
-
-
-command NT NERDTree
-""command QR QuickRun
-
-command! -nargs=? QR call s:QR(<f-args>)
-function! s:QR(...)
-  if a:0 >= 1
-    
-    echo "arg : ".a:1
-  else
-	:QuickRun
-  end
-endfunction
-
 
 
 inoremap ( ()<LEFT>
@@ -58,92 +21,70 @@ inoremap " ""<LEFT>
 inoremap $ $$<LEFT>
 
 
-" ファイルタイプ関連を無効化する
-" はじめに無効化しておかないと，多重読み込みかなんかでうまくいかなくなるときがあるらしい
-filetype off "ファイルタイプの自動検出をしないようになる．有効になっていた検出方法は無効化される
-filetype plugin indent off "ファイルタイプ用のインデント設定を自動読み込みしないようになる
+nnoremap <silent> ss :<C-u>sp<CR>
+nnoremap <silent> sv :<C-u>vs<CR>
+nnoremap <silent> sq :<C-u>q<CR>
 
-"--------------------------------------------------------------------------
-" neobundleのプラグイン管理
-"--------------------------------------------------------------------------
+nnoremap <silent> sj <C-w>j
+nnoremap <silent> sk <C-w>k
+nnoremap <silent> sl <C-w>l
+nnoremap <silent> sh <C-w>h
 
- " Note: Skip initialization for vim-tiny or vim-small.
- if 0 | endif
+nnoremap <silent> sJ <C-w>J
+nnoremap <silent> sK <C-w>K
+nnoremap <silent> sL <C-w>L
+nnoremap <silent> sH <C-w>H
 
- if &compatible
-   set nocompatible               " Be iMproved
- endif
+nnoremap <silent> sn gt
+nnoremap <silent> sp gT
 
- " neobundle.vimを呼び出せるようにする(必要) 必要の代わりに"Required:って書いてあった
- set runtimepath^=~/.vim/bundle/neobundle.vim/
+nnoremap <silent> s= <C-w>=
+nnoremap <silent> s> <C-w>><C-w>><C-w>><C-w>><C-w>><C-w>>
+nnoremap <silent> s< <C-w><<C-w><<C-w><<C-w><<C-w><<C-w><
+nnoremap <silent> s+ <C-w>+<C-w>+<C-w>+<C-w>+<C-w>+<C-w>+
+nnoremap <silent> s- <C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-
 
- " neobundle.vimの初期化(必要)
- call neobundle#begin(expand('~/.vim/bundle/'))
 
- " neobundle.vimが管理するプラグインの登録(必要)
- NeoBundleFetch 'Shougo/neobundle.vim'
+" ---------------------
+"  plugin の設定
+" ---------------------
 
- " ファイルをtree表示してくれる
- NeoBundle 'scrooloose/nerdtree' 
- " 単語補完やインクルードパスの補完候補を自動生成しポップアップ表示する
- NeoBundle 'Shougo/neocomplete.vim'
-" ソースコードを実行して実行結果をvim内で確認する(quickrun)
- NeoBundle 'thinca/vim-quickrun'
-let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
+call plug#begin('~/.vim/plugged')
 
-" vimprocのビルド
-" quickrunを非同期に行うために必要（quickrun中にvim操作）
- NeoBundle 'Shougo/vimproc', {
-    \ 'build' : {
-    \     'windows' : 'make -f make_mingw32.mak',
-    \     'cygwin' : 'make -f make_cygwin.mak',
-    \     'mac' : 'make -f make_mac.mak',
-    \     'unix' : 'make -f make_unix.mak',
-    \    },
-    \ }
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Shougo/neocomplete'
+"Plug 'jalvesaq/Nvim-R'
+"Plug 'Shougo/deoplete.nvim'
 
-" quickrunのoptionを設定
- " 一番下のウインドウに結果を表示
- " 出力がなかった場合に出力バッファを自動的に閉じる(実行時間のオプションがあると意味ないけど）
- " 実行時間を計測し，その結果も最後に出力　
- " "runner"で非同期処理，updatetimeで出力バッファの更新間隔をmsで設定（このオプションがないと非同期処理できなかった）
-let g:quickrun_config = {
-\   "_" : {
-\       "outputter/buffer/split" : ":botright",
-\       "outputter/buffer/close_on_empty" : 1,
-\       "hook/time/enable" : 1,
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 60
-\   },
-\}
-" c++でquickrunする場合の設定(コンパイラを"/usr/bin/clang++"に指定)
-" 上と一つにまとめようとしたらうまくいかなかった
-let g:quickrun_config = {
-\   "cpp" : {
-\       "outputter/buffer/split" : ":botright",
-\       "outputter/buffer/close_on_empty" : 1,
-\       "hook/time/enable" : 1,
-\       "command":"/usr/bin/clang++"
-\   },
-\}
+call plug#end()
 
-" quickrunを<C-c> で実行を強制終了させる
-" quickrun.vim が実行していない場合には <C-c> を呼び出す
-nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+call plug#begin('~/.config/nvim/plugged')
 
- call neobundle#end()
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Shougo/neocomplete'
+Plug 'jalvesaq/Nvim-R'
+Plug 'Shougo/deoplete.nvim'
 
- "ファイルタイプが変更された時，ファイルタイプ用のプラグインとインデント設定を自動読み込みするようにする
- filetype plugin indent on
- 
- " vimを立ち上げるたびにプラグインをチェック
- NeoBundleCheck
+call plug#end()
 
-"--------------------------------------------------------------------------
-" 補完機能の追加（公式:https://github.com/Shougo/neocomplete.vim をコピペ)
-"--------------------------------------------------------------------------
 
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" ---------------------
+"  nerdtree の設定
+" ---------------------
+
+" Ctrl+eでNERDTREEを開く
+nnoremap <silent><C-n> :NERDTreeTabsToggle<CR>
+" 隠しファイルを表示する
+let NERDTreeShowHidden = 1
+
+
+" ---------------------
+"  neocomplete の設定
+" ---------------------
+
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -152,7 +93,6 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -204,6 +144,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType *.cpp set omnifunc=ccomplete#Complete
+
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
