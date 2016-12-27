@@ -59,18 +59,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Shougo/neocomplete'
-"Plug 'jalvesaq/Nvim-R'
-"Plug 'Shougo/deoplete.nvim'
-
-call plug#end()
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Shougo/neocomplete'
 Plug 'jalvesaq/Nvim-R'
 Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/vimshell.vim'
+Plug 'Shougo/vimproc', {'build': 'make'}
 
 call plug#end()
 
@@ -162,3 +154,4 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
