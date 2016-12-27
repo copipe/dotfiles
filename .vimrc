@@ -6,12 +6,17 @@ set showmatch  "対応する括弧を強調表示
 set cursorcolumn "カーソル列の背景を変更"
 set cursorline  "カーソル行の背景を変更
 set whichwrap=b,s,h,l,<,>,[,]  "行頭行末の左右移動で行をまたぐ
-set tabstop=4  "画面上でタブ文字が占める幅
-set expandtab  "タブ入力を複数の空白入力に置き換える
-set shiftwidth=4  "自動インデントでずれる幅
-set softtabstop=4  "連続した空白に対して<tab>や<del>でガーソルが動く幅
 set backspace=indent,eol,start "バックスペースの有効化
 
+" インデント
+" 通常設定(実質R用)
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+autocmd FileType python setlocal sw=4 sts=4 ts=4 et "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtab
+autocmd FileType sql setlocal sw=4 sts=4 ts=4 et
+autocmd FileType vim setlocal sw=2 sts=2 ts=2 et
 
 inoremap ( ()<LEFT>
 inoremap { {}<LEFT>
