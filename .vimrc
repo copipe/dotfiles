@@ -1,6 +1,7 @@
 " ---------------------
 " 基本設定
 " ---------------------
+"
 
 syntax on  "色分け
 colorscheme molokai "色指定
@@ -59,7 +60,7 @@ if dein#load_state(s:plugin_dir)
   " python補完
   call dein#add('davidhalter/jedi-vim')
   " デバック用
-  call dein#add('andviro/flake8-vim')
+  ""call dein#add('andviro/flake8-vim')
 
   call dein#add('thinca/vim-quickrun')
 
@@ -240,3 +241,5 @@ nnoremap <silent> s> <C-w>><C-w>><C-w>><C-w>><C-w>><C-w>>
 nnoremap <silent> s< <C-w><<C-w><<C-w><<C-w><<C-w><<C-w><
 nnoremap <silent> s+ <C-w>+<C-w>+<C-w>+<C-w>+<C-w>+<C-w>+
 nnoremap <silent> s- <C-w>-<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-
+
+set clipboard=unnamed,autoselect
