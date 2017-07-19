@@ -1,18 +1,15 @@
 " ========== VimFiler ==========
-
 " Ctrl+nでVimFilerを開く
 nnoremap <silent><C-n> :VimFiler<CR>
 
 
 " ========== lightline ==========
-"
 let g:lightline = {
       \ 'colorscheme': 'wombat'
       \ }
 
 " ========== neocomplete ==========
 "  本家(https://github.com/Shougo/neocomplete.vim)のコピペ
-
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -84,3 +81,6 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+
+" ========== jedi-vim ==========
+autocmd FileType python setlocal completeopt-=preview
