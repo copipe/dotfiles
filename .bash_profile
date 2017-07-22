@@ -6,7 +6,7 @@ parse_git_branch() {
 
 export PS1="$\[\e[36m\e[40m\][ \t \u@\w ]\[\e[0m\] \[\033[40;32m\]\$(parse_git_branch)\[\033[0m\]\n\\$"
 
-alias ll='ls -alG'
+alias ll='ls -alhG'
 alias h='history'
 
 alias ga='git add'
