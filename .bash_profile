@@ -18,6 +18,7 @@ alias gl='git pull'
 alias gst='git status'
 alias glog='git log --oneline --decorate --color --graph'
 alias gb='git branch'
+alias gg='git graph'
 
 alias jn='jupyter notebook'
 alias imgcat='~/shellscript/imgcat.sh'
