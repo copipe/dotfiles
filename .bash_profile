@@ -20,15 +20,14 @@ alias glog='git log --oneline --decorate --color --graph'
 alias gb='git branch'
 alias gg='git graph'
 
-alias jn='jupyter notebook'
-alias imgcat='~/shellscript/imgcat.sh'
+alias jl='jupyter lab'
 
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
 export PGDATA="/usr/local/var/postgres"
 export PYTHONPATH=~/xgboost/python-package
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# added by Miniconda3 installer
+export PATH="/Users/TakayukiYagi/miniconda3/bin:$PATH"
+eval "$(direnv hook bash)"
+export EDITOR=vim
