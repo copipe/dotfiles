@@ -19,6 +19,7 @@ alias gst='git status'
 alias glog='git log --oneline --decorate --color --graph'
 alias gb='git branch'
 alias gg='git graph'
+alias gd='git diff'
 
 alias jl='jupyter lab'
 
@@ -28,6 +29,8 @@ export PGDATA="/usr/local/var/postgres"
 export PYTHONPATH=~/xgboost/python-package
 
 # added by Miniconda3 installer
-export PATH="/Users/TakayukiYagi/miniconda3/bin:$PATH"
+export PATH="/Users/takayuki_yagi/miniconda3/bin:$PATH"
 eval "$(direnv hook bash)"
 export EDITOR=vim
+
+export PATH="/usr/local/bin:$PATH"
